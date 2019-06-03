@@ -4,7 +4,9 @@ description: "Guide to configuring .NET agent settings"
 tags: "installation microsoft agent configuration settings .Net"
 -->
 
-The Contrast configuration file *DotnetAgentService.exe.config* contains several settings that you can modify to change the behavior of the .NET agent for Windows. In all cases, configuration values in the agent configuration file will override any configuration values that have the same name specified in the Contrast interface (e.g., logging level, sampling and stack trace configuration).
+The Contrast configuration file *DotnetAgentService.exe.config* contains several settings that you can modify to change the behavior of the .NET agent for Windows. In all cases, configuration values in the agent configuration file will override any configuration values that have the same name specified in the Contrast UI (e.g., logging level, sampling and stack trace configuration).
+
+> **Note:** These configuration values are considered legacy configuration options. New configuration values will only be supported via YAML-based configuration. All users are encouraged to migrate to [YAML configuration properties](installation-netconfig.html#net-yaml).
 
 ## General
 
@@ -13,6 +15,7 @@ The Contrast configuration file *DotnetAgentService.exe.config* contains several
 | AutoUpdateBehavior       | Determines if the agent automatically updates to a newer version when a newer version is available on Contrast. The default value is **Daily**.<li>**Daily**: The agent checks for a new version on service start and every 24 hours afterwards.</li><li>**Startup**: The agent only checks for and installs updates on service start</li><li>**Disabled**: The agent checks for, but doesn't install, any updates.</li> | 4.6+     |
 | OverrideExistingProfiler |   Due to .NET Profiling API technology limitations, only one program can use it at a time. This API is commonly used by APM agents like NewRelic, AppDynamics or DynaTrace.  By default, this is set to "false"; the Contrast agent will fail to start if it detects another program using the .NET Profiling API so that the other program can continue working. If set to "true", Contrast will attempt to force itself to start, which will break the other agent.   | 18.3.4+ |
 | RestartIISOnConfigChange | Contrast will automatically restart IIS in the background when any configuration settings that require IIS restart are changed. Changes that enable or disable Assess or Defend mode, add security controls, or change process whitelist or blacklist require restart. These changes can come from changing the application *config* file or from the Contrast website. The default value is "true". If set to "false", you must restart IIS for changes to the given configuration settings to take effect. | 3.2.7+  |
+| RouteDiscoveryEnabled   | Turn on and off the route coverage collection feature.  The default is "true".  If set to "false", routes will not be collected for supported .NET frameworks. | 18.8.23
 
 
 ## Communication
@@ -37,7 +40,7 @@ To avoid storing sensitive proxy credentials in plain text, the agent stores the
 
 | Parameter           | Description                              | Version |
 | ------------------- | ---------------------------------------- | ------- |
-| ServerName          | Customizes the display name used by the Contrast interface for the server running the Contrast.NET agent. If the **ServerName** configuration setting is not present, the .NET agent will use the computer name for the server's display name. You can view the computer name by viewing the **System** properties in the Windows **Control Panel**. | 3.1.4+  |
+| ServerName          | Customizes the display name used by the Contrast interface for the server running the .NET agent. If the **ServerName** configuration setting is not present, the .NET agent will use the computer name for the server's display name. You can view the computer name by viewing the **System** properties in the Windows **Control Panel**. | 3.1.4+  |
 | Contrast.AppVersion | Controls the application version tag sent to Contrast. | 3.3.6+  |
 | Contrast.AppGroup   | Specifies the group to which this application will be added in the Contrast UI, if this application is not already a member of a group. | 3.4.5+ |
 | ServerEnvironment   | Controls the environment value sent to Contrast when servers are created. Valid `ServerEnvironment` values are `DEVELOPMENT`, `QA` or `PRODUCTION` (case insensitive). The default value is `QA`. This does not affect servers that already exist in Contrast. | 3.4.2+  |
@@ -82,8 +85,8 @@ More detailed levels of logging degrade performance, but can generate useful inf
 | Parameter                 | Description                              |
 | ------------------------- | ---------------------------------------- |
 | ResponseUrlWhiteListRegex | Controls the .NET agent's collection and analysis of response headers and bodies. Responses aren't captured and are analyzed for request paths (*HttpRequest.Path*) that match this regex. This setting is required to work around a known Microsoft bug in the .NET framework (*HttpModules*) with filters can cause resources such as ***WebResource.axd*** to return **0 bytes**. (This can result in 500 status responses for embedded resources, such as images.) The default value is *WebResource.axd*. |
-| ProcessBlacklist          | Controls the .NET agent's monitoring of application pools. Set the value of this setting to a comma-separated list of application pool names that shouldn't be analyzed by Contrast.NET. Contrast.NET should have no performance impact on applications that aren't analyzed due to this setting. This list accepts `*` as a wildcard.</li></ul> |
-| ProcessWhitelist          | Controls the .NET agent's monitoring of application pools. You should set the value of this setting to a comma-separated list of application pool names that should be analyzed by Contrast.NET. The agent doesn't monitory any other applications.  Contrast.NET should have no performance impact on applications that aren't analyzed due to this setting. This list accepts `*` as a wildcard. |
+| ProcessBlacklist          | Controls the .NET agent's monitoring of application pools. Set the value of this setting to a comma-separated list of application pool names that the agent shouldn't analyze. The agent should have no performance impact on applications that aren't analyzed due to this setting. This list accepts `*` as a wildcard.</li></ul> |
+| ProcessWhitelist          | Controls the .NET agent's monitoring of application pools. You should set the value of this setting to a comma-separated list of application pool names that the agent should analyze. The agent doesn't monitory any other applications. The agent should have no performance impact on applications that aren't analyzed due to this setting. This list accepts `*` as a wildcard. |
 
 See the [Application Pool Filter](installation-netusage.html#iis) article for more information on using `ProcessBlacklist` and `ProcessWhitelist` against IIS application pools. 
 

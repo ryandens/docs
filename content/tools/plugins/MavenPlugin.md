@@ -16,7 +16,14 @@ This guidance refers to version 2.0 of the Contrast Maven Plugin. For informatio
 
 You can view the plugin code in Contrast's [Github repository](https://github.com/Contrast-Security-OSS/contrast-maven-plugin). You can also review how our two goals, `install` and `verify`, work.
 
-<!-- The plugin can be found here on the Maven repository. -->
+## Use the Plugin
+
+Use the Maven plugin to allow Contrast to discover vulnerabilities in your application during integration or verification tests. 
+
+### Goals
+
+* `install`: Installs a Contrast Java agent to your local project.
+* `verify`: Checks for new vulnerabilities in your web application.
 
 ## Configuration
 
@@ -29,10 +36,12 @@ The table below shows all the parameters for the plugin. These settings are for 
 | apiKey      | True     |            | [API Key](admin-orgsettings.html#apikey)                                          |       |
 | orgUuid     | True     |            | [Organization UUID](admin-orgsettings.html#apikey)                                |       |
 | appName     | True     |            | Name of the application as seen in the Contrast UI                                |       |
+| appId       | False    |            | ID of the application as seen in the Contrast UI. Either the `appId` or `appName` is required. If both are specified, Contrast uses the `appId` and ignores the `appName`. | 2.5 |
 | standalone  | False    | False      | Set this to "true" if this is a standalone application.                           |    2.2|
-| appVersion  | False    | See **appVersion** section. | The `appversion` to report to the Contrast application. See the **appVersion** section for more information.    |       |
+| appVersion  | False    |             | The `appversion` to report to the Contrast application. See the **appVersion** section for more information.    |       |
 | apiUrl      | True     |            | API URL to your Contrast application                                              |       |
 | serverName  | True     |            | Name of the server you set with `-Dcontrast.server`                               |       |
+| serverId    | False    |            | ID of the server as seen in the Contrast UI. Either the `serverId` or `serverName` is required. If both are specified, Contrast uses the `serverId` and ignores the `serverName`. | 2.5 |
 | serverPath  | False    |            | The server context path                                                           |    2.1|
 | minSeverity | False    | Medium     | Minimum severity level to verify; options are Note, Low, Medium, High or Critical |       |
 | jarPath     | False    |            | Path to *contrast.jar*, if you already have one downloaded                        |       |
@@ -75,7 +84,9 @@ The following configuration is an example of a profile for the Contrast Maven Pl
                     <apiUrl>https://app.contrastsecurity.com/Contrast/api</apiUrl>
                     <orgUuid>QWER-ASDF-ZXCV-ERTY</orgUuid>
                     <appName>MyAppName</appName>
+                    <appId>bc3028e6-82ac-410f-b9c7-13573d33cb94</appId>
                     <serverName>MyServerName</serverName>
+                    <serverId>5005</serverId>
                     <minSeverity>High</minSeverity>
                 </configuration>
             </plugin>
@@ -107,7 +118,7 @@ When your application's integration tests are run, the Contrast agent can add an
 
 ## Containers
 
-Please see the following articles for specific installation instructions:
+See the following articles for specific installation instructions:
 
 * [Install the agent on Maven Apache Tomcat](installation-javainstall.html#apache)
 * [Install the agent on Maven Cargo Plugin](installation-javainstall.html#cargo)

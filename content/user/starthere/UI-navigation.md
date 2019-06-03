@@ -6,14 +6,15 @@ tags: "UI navigation"
 
 The Contrast interface is used for configuring Contrast agent deployments and triaging application weaknesses as we continuously monitor them. The UI provides a single view to analyze application vulnerabilities, discover vulnerable and out-of-date third-party libraries, and detect attacks. We also provide visibility into various environments to see how an application’s hidden risks are being handled through the development cycle. 
 
-To get the best experience out of Contrast, familiarize yourself with the components of the UI that will most often be used. 
+To get the best experience out of Contrast, familiarize yourself with the components of the UI that you'll use most often. 
 
 Here at Contrast, we work hard to engage and guide our users. Don’t hesitate to <a href="mailto:andria.mattsen@contrastsecurity.com,terra.caussin@contrastsecurity.com">give us some suggestions</a>! 
 
 ## Navigation
+
 The top navigation bar is persistent as you move through Contrast - giving easy access to core pieces at any time. There are two versions of the top navigation bar depending on your system role and access levels. Most users will interface with the organization view. Users with system administration capabilities will have the luxury of toggling between the organization view and system administration view.
 
-### Organization View
+### Organization view
 
 <a href="assets/images/Dashboard-org-view.png" rel="lightbox" title="View the dashboard as an Organization Administrator"><img class="thumbnail" src="assets/images/Dashboard-org-view.png"/></a>
 
@@ -30,8 +31,9 @@ The top navigation bar is persistent as you move through Contrast - giving easy 
 | Notifications 	     | Provides real-time feedback when key events happen through this in-application notification channel. Get notified about new vulnerabilities, active attacks, or offline servers and be able to react immediately.                                                                                                    |
 | User Menu 	   	     | Provides access to subsidiary pages of Contrast such as personal account information, Organization Settings, Policy Management (if permissions allow), Reports, Release Notes and Help. If part of multiple organizations, toggle between them here as well.                                                                                                    |
 
-### System Administration View
-If you have system administration capabilities, you will be able to switch from the organization view to the system administration view via the User menu. When doing so, the top navigation bar changes. This is only available on an Enterprise On-Premises (EOP) installation.
+### System Administration view
+
+If you have system administration capabilities, you will be able to switch from the organization view to the system administration view in the user menu. When doing so, the top navigation bar changes. This is only available on an Enterprise-on-Premises (EOP) installation.
 
 <a href="assets/images/Dashboard-super-view.png" rel="lightbox" title="View the dashboard as a System Administrator"><img class="thumbnail" src="assets/images/Dashboard-super-view.png"/></a>
 
@@ -48,21 +50,22 @@ If you have system administration capabilities, you will be able to switch from 
 | Administrator Menu      | Provides access to subsidiary administration pages of Contrast such as System Settings, Policy Management, and Help.      |
 
 
-## Table Actions
-Many pages within Contrast contain rows of data presented in table format. These tables have a built-in search mechanism to easily get to data of interest. Searches are performed on multiple columns and quickly display matched rows as you type. Coupled with the search field in many cases, Contrast provides quick views for immediate access to most frequently used filters.
+## Grid Actions
 
-Each table offers column sorting to alter the ordering of the data in exactly the way you want. In addition, tables offer actions that allow you to perform operations on individual rows or in bulk by selecting many rows. The goal? Get you to your data fast.
+Contrast displays primary assets and findings - applications, servers, libraries, vulnerabilities and attacks - in table format with rows of data. Use the search field to quickly find the data you need. You can also use the quick views to refine data by the most frequently used categories. 
 
-<a href="assets/images/ActionBar_OrgApps.png" rel="lightbox" title="Sample Table Actions"><img class="thumbnail" src="assets/images/ActionBar_OrgApps.png"/></a>
+<a href="assets/images/Vulnerabilities-grid.png" rel="lightbox" title="View vulnerabilities in the grid"><img class="thumbnail" src="assets/images/Vulnerabilities-grid.png"/></a>
 
-## Advanced Filtering 
-Advanced filtering is available on each main listing of assets and findings - Applications, Servers, Libraries, Vulnerabilities, and Attacks. Simply click the **Advanced** link next to the search field. Here you’ll find panels of various data sets that allow you to limit the result set and hone in on the pieces that interest you.
+In each grid, complete actions to manage your organization - such as merging applications or sending a vulnerability to your bugtracker - for individual or multiple items. For individual items, hover over the grid row, and select the appropriate icon for each action. For multiple items, use the check marks to select each row, and use the icons in the bottom action bar to complete each action. 
 
-For example, you could apply a filter to a list of Vulnerabilities to view only Cross-Site Scripting vulnerabilities that have a Critical severity and have yet to be remediated. 
+### Sorting and filtering 
 
-<a href="assets/images/TraceFilter.png" rel="lightbox" title="Advanced Filtering"><img class="thumbnail" src="assets/images/TraceFilter.png"/></a>
+Sort and filter data in the grids to adjust your focus. Use the dropdown menu above the grids to select a quick view of findings in certain categories, such as licensed applications or open vulnerabilities. You can also use the filters in the grid columns to find specific sets of findings, such as servers with the same tags. The **Sort** menu above the right corner of the grid lets you sort all findings in your current view by certain variables, such as application name (alphabetically), in ascending or descending order. 
 
-## Delve into the Details 
-From any main page, you can drill into an asset or finding by clicking on its name within the table row. Contrast highlights metrics on the asset or finding for a quick snapshot of core data. Navigate the sub-pages to get more details on related pieces, view activity more closely, access review policy, or capture comments and collaborate with team members. 
+<a href="assets/images/Servers-filter.png" rel="lightbox" title="Sort and filtering findings in the UI"><img class="thumbnail" src="assets/images/Servers-filter.png"/></a>
+
+## The Details 
+
+From any main page, you can drill into an asset or finding's details by clicking on its name within the table row. Contrast highlights metrics on the asset or finding for a quick snapshot of core data. Use the tabs in each details page to find more details on related pieces, view activity more closely, access review policy, or capture comments and collaborate with team members. 
 
 <a href="assets/images/Details.png" rel="lightbox" title="Details View"><img class="thumbnail" src="assets/images/Details.png"/></a>
